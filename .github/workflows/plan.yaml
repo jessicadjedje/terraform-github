@@ -28,10 +28,13 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
       - name: Terraform Format Check
+        working-directory: ./keypair
         run: terraform fmt -check -recursive
       - name: Terraform Init
+        working-directory: ./keypair
         run: terraform init
       - name: Terraform Validate
+        working-directory: ./keypair
         run: terraform validate
       # ---------------------------
       # TFLint (Static Analysis)
@@ -57,4 +60,6 @@ jobs:
       # Terraform Plan
       # ---------------------------
       - name: Terraform Plan
+        working-directory: ./keypair
         run: terraform plan -out=tfplan
+        
